@@ -10,9 +10,9 @@ class Plagas {
         return poblacion > 10
     }
 
-    method atacar(elemento, plaga){
+    method atacar(elemento, this){
 
-        elemento.sufrirAtaque(plaga)
+        elemento.sufrirAtaque(this)
         poblacion += 0.1 * poblacion
     }
 }  
@@ -30,9 +30,9 @@ class Cucarachas inherits Plagas {
     override method transmiteEnfermedad(){
         return pesoPromedio >= 10 && super()
     }
-    override method atacar(elemento, plaga){
+    override method atacar(elemento, this){
         
-        super(elemento, plaga)
+        super(elemento, this)
         pesoPromedio += 2
     }
 }
@@ -46,9 +46,9 @@ class Pulgas inherits Plagas {
 
 class Garrapatas inherits Pulgas {
 
-    override method atacar(elemento, plaga){
+    override method atacar(elemento, this){
         poblacion += 0.2 * poblacion
-        elemento.sufrirAtaque(plaga)
+        elemento.sufrirAtaque(this)
     }
 }
 
