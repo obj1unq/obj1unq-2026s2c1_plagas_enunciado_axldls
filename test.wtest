@@ -1,0 +1,53 @@
+import elementos.*
+import plagas.*
+
+
+describe "plagas" {
+    const cucarachas1 = new Cucarachas(poblacion = 100,  pesoPromedio = 10)
+
+    test "transmite enfermedad"{
+        assert.that(cucarachas1.transmiteEnfermedad())
+    }
+    test "daño de plaga"{
+        assert.equals(50, cucarachas1.nivelDaño())
+    }
+}
+
+
+describe "elementos y ataques"{
+    
+    const hogar1 = new Hogar(nivelMugre = 1, confort = 4)
+    const hogar2 = new Hogar(nivelMugre = 0, confort = 3)
+    const perro = new Mascota(nivelSalud = 300)
+    const unaHuerta = new Huerta(capacidadProduccion = 1000)
+    const barrio = new Barrio(elementosBarrio = [hogar1, hogar2, perro, unaHuerta])
+    const cucarachas = new Cucarachas(poblacion = 100,  pesoPromedio = 15)
+
+
+    test "efectos sobre plaga"{
+
+        cucarachas.atacar(perro, cucarachas)
+        assert.equals(17, cucarachas.pesoPromedio())
+    }
+    
+    test "perro atacado"{
+
+        cucarachas.atacar(perro, cucarachas)
+        assert.equals(250, perro.nivelSalud())
+    }
+    
+    test "mascota sufre ataque"{
+        
+        perro.sufrirAtaque(cucarachas)
+        assert.equals(250, perro.nivelSalud())
+    }
+
+    test "barrio copado"{
+        assert.that(barrio.esCopado())
+    }
+
+
+    test "elemento es bueno"{
+        assert.that(hogar1.esBueno())
+    }
+}
