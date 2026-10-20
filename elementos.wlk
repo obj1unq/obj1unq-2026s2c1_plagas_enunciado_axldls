@@ -40,7 +40,7 @@ class Mascota {
         return nivelSalud > 250
     }
 
-    method sufrirAtauqe(plaga){
+    method sufrirAtaque(plaga){
         nivelSalud -= self.dañoPorEnfermedad(plaga)
     }
 
@@ -58,6 +58,6 @@ class Barrio {
     }
 
     method esCopado(){
-        self.elementosBuenos().size() > elementosBarrio.size().div(2)
+        return self.elementosBuenos().size() > elementosBarrio.size().div(2)
     }
 }
